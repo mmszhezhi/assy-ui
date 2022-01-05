@@ -57,7 +57,7 @@ export default {
   methods: {
     ...mapMutations([SET_SELECTED_ORDER, SET_SELECTED_PROCESS]),
     load() {
-      axios.post("/api/emul/orders", {page: this.page, pageSize: this.pageSize, keyword: this.keyword}, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
+      axios.post(localStorage.getItem("host") + "/emul/orders", {page: this.page, pageSize: this.pageSize, keyword: this.keyword}, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
         console.log(response);
         if (response.data.code === 0) {
           this.orders = response.data.data.rows;

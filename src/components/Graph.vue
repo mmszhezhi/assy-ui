@@ -46,7 +46,7 @@ export default {
       }
     },
     load(no) {
-      axios.get("/api/emul/orders/" + no + "/graph", {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
+      axios.get(localStorage.getItem("host") + "/emul/orders/" + no + "/graph", {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
         console.log(response);
         if (response.data.code !== 0) {
           return

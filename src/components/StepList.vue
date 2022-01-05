@@ -52,7 +52,7 @@ export default {
         this.rows = [];
         return
       }
-      axios.post("/api/emul/orders/" + this.selectedOrder.no + "/step", {"process": this.selectedProcess}, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
+      axios.post(localStorage.getItem("host") + "/emul/orders/" + this.selectedOrder.no + "/step", {"process": this.selectedProcess}, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
         console.log(response);
         if (response.data.code !== 0) {
           return
