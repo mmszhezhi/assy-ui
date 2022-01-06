@@ -61,7 +61,9 @@ export default {
         console.log(response);
         if (response.data.code === 0) {
           this.orders = response.data.data.rows;
-          this.selectOrder(this.orders[0]);
+          if (this.orders.length > 0) {
+            this.selectOrder(this.orders[0]);
+          }
         }
       }).catch(error => {
         console.log(error);
