@@ -46,7 +46,7 @@ export default {
       }
     },
     load(no) {
-      axios.get(localStorage.getItem("host") + "/emul/orders/" + no + "/graph", {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
+      axios.get("/api/emul/orders/" + no + "/graph", this.getRequestConfig()).then(response => {
         console.log(response);
         if (response.data.code !== 0) {
           return
@@ -96,7 +96,9 @@ export default {
     this.$options.graph = $(go.Diagram, "graph",
         {
           initialContentAlignment: go.Spot.Center,
-          "undoManager.isEnabled": true
+          "undoManager.isEnabled": true,
+          hasVerticalScrollbar: false,
+          hasHorizontalScrollbar: false
         }
     );
     // define a simple Node template
@@ -143,8 +145,9 @@ export default {
 
 <style scoped>
 #graph {
-  width: 100%;
-  height: 1200px;
+  height: 100%;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 #graph >>> canvas {

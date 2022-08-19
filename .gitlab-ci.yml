@@ -1,0 +1,32 @@
+stages:
+  - build
+  - deploy
+
+dist:
+  stage: build
+  image: node:6
+  tags:
+    - windows
+  only:
+    - master
+  script:
+    - npm install --progress=false
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+
+uat:
+  stage: deploy
+  tags:
+    - windows
+  only:
+    - master
+  dependencies:
+    - dist
+  before_script:
+    - md $env:USERPROFILE\.ssh
+    - echo "$env:SSH_PRIVATE_KEY" | out-file -encoding ascii $env:USERPROFILE\.ssh\id_rsa
+  script:
+    - ssh -o StrictHostKeyChecking=no $env:UAT_USERNAME@$env:UAT_HOST rm -rf /data/app/www/vemul/*
+    - scp -r -o StrictHostKeyChecking=no dist/* $env:UAT_USERNAME@"$env:UAT_HOST":$env:UAT_PATH

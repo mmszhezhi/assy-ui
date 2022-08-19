@@ -1,29 +1,29 @@
 <template>
-  <div style="width: 100%; overflow-y: auto; height: 100%">
+  <div class="step-tb table-responsive">
     <table class="table table-hover">
       <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">ID</th>
-        <th scope="col">编码</th>
-        <th scope="col">名称</th>
-        <th scope="col">状态</th>
-        <th scope="col">功能码</th>
-        <th scope="col">模式</th>
-        <th scope="col">类型</th>
-        <th scope="col">参数</th>
+        <th scope="col" style="width: 3%">#</th>
+        <th scope="col" style="width: 8%">ID</th>
+        <th scope="col" style="width: 5%">编码</th>
+        <th scope="col" style="width: 10%">名称</th>
+        <th scope="col" style="width: 5%">状态</th>
+        <th scope="col" style="width: 10%">功能码</th>
+        <th scope="col" style="width: 5%">模式</th>
+        <th scope="col" style="width: 5%">类型</th>
+        <th scope="col" style="width: 20%">参数</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="(r, i) in rows" :key="'step-'+i">
         <th scope="row">{{i+1}}</th>
-        <td style="width: 5%">{{ r.id }}</td>
-        <td style="width: 5%">{{ r.code }}</td>
-        <td style="width: 20%">{{ r.name }}</td>
-        <td style="width: 5%">{{ r.status }}</td>
-        <td style="width: 10%">{{ r.functionCode }}</td>
-        <td style="width: 5%">{{r.executeMode}}</td>
-        <td style="width: 10%">{{r.operationType}}</td>
+        <td>{{ r.id }}</td>
+        <td>{{ r.code }}</td>
+        <td>{{ r.name }}</td>
+        <td>{{ r.status }}</td>
+        <td>{{ r.functionCode }}</td>
+        <td>{{r.executeMode}}</td>
+        <td>{{r.operationType}}</td>
         <td>{{r.params}}</td>
       </tr>
       </tbody>
@@ -52,7 +52,7 @@ export default {
         this.rows = [];
         return
       }
-      axios.post(localStorage.getItem("host") + "/emul/orders/" + this.selectedOrder.no + "/step", {"process": this.selectedProcess}, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}}).then(response => {
+      axios.post("/api/emul/orders/" + this.selectedOrder.no + "/step", {"process": this.selectedProcess}, this.getRequestConfig()).then(response => {
         console.log(response);
         if (response.data.code !== 0) {
           return
@@ -68,5 +68,15 @@ export default {
 </script>
 
 <style scoped>
-
+.step-tb {
+  margin-top: 16px;
+  height: 100%
+}
+td {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+table {
+  table-layout: fixed;
+}
 </style>
