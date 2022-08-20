@@ -6,7 +6,7 @@ dist:
   stage: build
   image: node:16
   tags:
-    - windows
+    - linux
   only:
     - master
   script:
