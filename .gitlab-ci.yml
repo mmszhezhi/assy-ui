@@ -11,6 +11,7 @@ dist:
     - master
   script:
     - npm install --progress=false
+    - sed -i '808s/b\[c\]=.*//' node_modules/gojs/release/go.js
     - npm run build
   artifacts:
     paths:
