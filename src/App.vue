@@ -23,5 +23,4 @@ export default {
 .scrollarea {
   overflow-y: auto;
 }
-
 </style>

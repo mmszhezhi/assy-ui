@@ -4,6 +4,8 @@ import App from './App.vue'
 import store from "./store";
 import '../public/css/main.css'
 
+// import { datePipe } from './core/pipes/date.pipe';
+// vue.filter('date', datePipe);
 const app = createApp(App).use(store);
 app.config.globalProperties.getToken = function () {
     return localStorage.getItem('easycare_scada_token')

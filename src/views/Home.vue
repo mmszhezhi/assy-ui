@@ -22,6 +22,7 @@ import StepList from "../components/StepList";
 import Graph from "../components/Graph";
 import {mapState} from "vuex";
 
+
 export default {
   name: "Home",
   components: {
