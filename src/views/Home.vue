@@ -4,7 +4,7 @@
     <div class="content" :class="{hide: selectedOrder.no == null}">
       <div style="margin: 16px">
         <h3>{{ selectedOrder.no }}</h3>
-        <p>{{selectedOrder.workshop}} / {{selectedOrder.line}} / {{selectedOrder.devGroup}}</p>
+        <p>{{selectedOrder.name}} / {{selectedOrder.type}} / {{selectedOrder.status}}</p>
       </div>
       <Graph></Graph>
       <StepList></StepList>
@@ -34,7 +34,7 @@ export default {
   },
   mounted() {
     if (this.getToken() === null) {
-      window.location.href = "/login.html";
+      //window.location.href = "/login.html";
     }
   }
 }
